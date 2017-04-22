@@ -1,0 +1,518 @@
+<!doctype html>
+<html class="no-js" lang="it">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="user-scalable=no, width=device-width, height=device-height" />
+        <title>Geostationary Satellite View | KessyDish.com</title>
+        <meta name="description" content="Geostationary Satellite View"/>
+        <link href="css/style.min.css" rel="stylesheet" />
+
+        <script src="https://filippoquacquarelli.it/kessydish/js/jquery.min.js"></script>
+
+        <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-76850030-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+		<!-- <script type="text/javascript">var switchTo5x=true;</script> -->
+		<!-- <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+		<script type="text/javascript" src="http://s.sharethis.com/loader.js"></script> -->
+
+    </head>
+    <body>
+
+	<a href="https://github.com/filippo-quacquarelli/kessydish/" target="_blank" class="hidden-xs hidden-sm github-corner" aria-label="View source on Github">
+		<svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; z-index:99; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+	    </a>
+	    <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+<div class="container-app">
+
+    <header>
+	    <div class="menu" id="js-primary-menu">
+
+	    	<div class="menu__col-1">
+	        	<input id="pac-input" class="controls" type="text" placeholder="Find a place">
+            <button type="button" name="button-reset" id="js-input-reset" class="button-reset">
+              <svg class="icon--small debug__icon-close" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="348.333px" height="348.334px" viewBox="0 0 348.333 348.334" xml:space="preserve" enable-background="new 0 0 348.333 348.334">
+    				  <g>
+    				    <path d="M336.559 68.611L231.016 174.165l105.543 105.549c15.699 15.705 15.699 41.145 0 56.85 -7.844 7.844-18.128 11.769-28.407 11.769 -10.296 0-20.581-3.919-28.419-11.769L174.167 231.003 68.609 336.563c-7.843 7.844-18.128 11.769-28.416 11.769 -10.285 0-20.563-3.919-28.413-11.769 -15.699-15.698-15.699-41.139 0-56.85l105.54-105.549L11.774 68.611c-15.699-15.699-15.699-41.145 0-56.844 15.696-15.687 41.127-15.687 56.829 0l105.563 105.554L279.721 11.767c15.705-15.687 41.139-15.687 56.832 0C352.258 27.466 352.258 52.912 336.559 68.611z"/>
+    				  </g>
+    				</svg>
+            </button>
+	      </div>
+
+	    <div class="menu__col-2">
+				<select id="satellite" class="satellite-select" name="satellite">
+					<option id="s1800" value="180">180E INTELSAT 18</option>
+					<option id="s1781" value="178.1">178.1E INMARSAT 3-F3</option>
+					<option id="s1720" value="172">172E AMC-23</option>
+					<option id="s1690" value="169">169E INTELSAT 8 (IS-8)</option>
+					<option id="s1672" value="167.2">167.2E LUCH 5A</option>
+					<option id="s1670" value="167">167E TIANLIAN 1-02</option>
+					<option id="s1660" value="166">166E INTELSAT 19 (IS-19)</option>
+					<option id="s1640" value="164">164E OPTUS B3</option>
+					<option id="s1620" value="162">162E SUPERBIRD-B2</option>
+					<option id="s1600" value="160">160E BEIDOU G4 | OPTUS D1</option>
+					<option id="s1590" value="159">159E ABS-1 (LMI 1)</option>
+					<option id="s1570" value="157">157E INTELSAT 706 (IS-706)</option>
+					<option id="s1560" value="156">156E OPTUS C1 | OPTUS D3</option>
+					<option id="s1540" value="154">154E JCSAT-2A</option>
+					<option id="s1520" value="152">152E OPTUS D2</option>
+					<option id="s1505" value="150.5">150.5E PALAPA C2</option>
+					<option id="s1500" value="150">150E JCSAT-1B</option>
+					<option id="s1460" value="146">146E KIKU-8 (ETS-VIII)</option>
+					<option id="s1450" value="145">145E MTSAT-2</option>
+					<option id="s1440" value="144">144E SUPERBIRD-C2</option>
+					<option id="s1435" value="143.5">143.5E INMARSAT 4-F1</option>
+					<option id="s1430" value="143">143E KIZUNA (WINDS)</option>
+					<option id="s1400" value="140">140E EXPRESS-AM5 | HIMAWARI-6 </option>
+					<option id="s1398" value="139.8">139.8E EXPRESS-AT2</option>
+					<option id="s1380" value="138">138E APSTAR 5 (TELSTAR 18)</option>
+					<option id="s1360" value="136">136E N-STAR C</option>
+					<option id="s1340" value="134">134E APSTAR 6</option>
+					<option id="s1320" value="132">132E JCSAT-5A | VINASAT-1</option>
+					<option id="s1318" value="131.8">131.8E VINASAT-2</option>
+					<option id="s1299" value="129.9">129.9E ZHONGXING-20A</option>
+					<option id="s1298" value="129.8">129.8E CHINASAT 1A (ZX 1A)</option>
+					<option id="s1282" value="128.2">128.2E COMS 1</option>
+					<option id="s1280" value="128">128E JCSAT-3A | JCSAT-RA (JCSAT-12)</option>
+					<option id="s1250" value="125">125E CHINASAT 6A</option>
+					<option id="s1240" value="124">124E JCSAT-13</option>
+					<option id="s1235" value="123.5">123.5E FENGYUN 2C</option>
+					<option id="s1222" value="122.2">122.2E ASIASAT 4</option>
+					<option id="s1200" value="120">120E ASIASAT 3S</option>
+					<option id="s1195" value="119.5">119.5E THAICOM 4</option>
+					<option id="s1180" value="118">118E TELKOM 2</option>
+					<option id="s1160" value="116">116E KOREASAT 3 | KOREASAT 6</option>
+					<option id="s1155" value="115.5">115.5E ZHONGXING-6B</option>
+					<option id="s1130" value="113">113E KOREASAT 5 (MUGUNGWHA 5) | PALAPA D</option>
+					<option id="s1121" value="112.1">112.1E FENGYUN 2F</option>
+					<option id="s1106" value="110.6">110.6E BEIDOU G3 | CHINASAT 10 (ZX 10)</option>
+					<option id="s1100" value="110">110E BSAT-3A | BSAT-3C | N-SAT-110</option>
+					<option id="s1098" value="109.8">109.8E BSAT 3B</option>
+					<option id="s1082" value="108.2">108.2E SES-7 (PROTOSTAR 2)</option>
+					<option id="s1080" value="108">108E NSS-11 (AAP-1) | TELKOM 1</option>
+					<option id="s1055" value="105.5">105.5E ASIASAT 7</option>
+					<option id="s1050" value="105">105E ASIASTAR</option>
+					<option id="s1030" value="103">103E EXPRESS 2A | EXPRESS-AM 3</option>
+					<option id="s1015" value="101.5">101.5E ZHONGXING-22A</option>
+					<option id="s1005" value="100.5">100.5E ASIASAT 5</option>
+					<option id="s0985" value="98.5">98.5E THURAYA-3</option>
+					<option id="s0983" value="98.3">98.3E CHINASAT 2A (ZX 2A)</option>
+					<option id="s0980" value="98">98E CHINASAT 11 (ZX 11)</option>
+					<option id="s0965" value="96.5">96.5E EXPRESS-AM 33</option>
+					<option id="s0950" value="95">95E NSS-6 | SES-8</option>
+					<option id="s0935" value="93.5">93.5E INSAT-3A | INSAT-4B</option>
+					<option id="s0922" value="92.2">92.2E CHINASAT 9</option>
+					<option id="s0915" value="91.5">91.5E MEASAT 3A | MEASAT-3</option>
+					<option id="s0908" value="90.8">90.8E KODAMA (DRTS)</option>
+					<option id="s0900" value="90">90E YAMAL 201 | YAMAL 300K</option>
+					<option id="s0893" value="89.3">89.3E TDRS 8</option>
+					<option id="s0880" value="88">88E ST 2</option>
+					<option id="s0875" value="87.5">87.5E CHINASAT 12 (ZX 12)</option>
+					<option id="s0865" value="86.5">86.5E KAZSAT-2</option>
+					<option id="s0863" value="86.3">86.3E FENGYUN 2D</option>
+					<option id="s0852" value="85.2">85.2E INTELSAT 15 (IS-15)</option>
+					<option id="s0850" value="85">85E RADUGA-1M 2</option>
+					<option id="s0848" value="84.8">84.8E HORIZONS-2</option>
+					<option id="s0830" value="83">83E GSAT-10 | GSAT-12 | INSAT-4A</option>
+					<option id="s0820" value="82">82E INSAT 3D | INSAT 3D | JCSAT-4A</option>
+					<option id="s0801" value="80.1">80.1E TIANLIAN I (CTDRS-1)</option>
+					<option id="s0800" value="80">80E EXPRESS-AM 2</option>
+					<option id="s0799" value="79.9">79.9E COSMOS 2473</option>
+					<option id="s0785" value="78.5">78.5E THAICOM 5 | THAICOM 6</option>
+					<option id="s0779" value="77.9">77.9E ABS-1A (KOREASAT 2)</option>
+					<option id="s0765" value="76.5">76.5E APSTAR 7</option>
+					<option id="s0760" value="76">76E ELEKTRO-L 1 (GOMS 2)</option>
+					<option id="s0749" value="74.9">74.9E ABS-2</option>
+					<option id="s0740" value="74">74E GSAT-14-7 | INSAT-3C | INSAT-4CR | KALPANA-1</option>
+					<option id="s0721" value="72.1">72.1E INTELSAT 22 (IS-22)</option>
+					<option id="s0705" value="70.5">70.5E EUTELSAT 70B</option>
+					<option id="s0700" value="70">70E RADUGA-1M 3</option>
+					<option id="s0685" value="68.5">68.5E INTELSAT 20 (IS-20) | INTELSAT 7 (IS-7)</option>
+					<option id="s0662" value="66.2">66.2E GALAXY 27 (G-27)</option>
+					<option id="s0660" value="66">66E INTELSAT 17</option>
+					<option id="s0658" value="65.8">65.8E INTELSAT 26 (IS-26)</option>
+					<option id="s0650" value="65">65E AMOS-4</option>
+					<option id="s0645" value="64.5">64.5E INMARSAT 3-F1</option>
+					<option id="s0642" value="64.2">64.2E INTELSAT 906 (IS-906)</option>
+					<option id="s0632" value="63.2">63.2E MBSAT</option>
+					<option id="s0630" value="63">63E COMSATBW-1</option>
+					<option id="s0626" value="62.6">62.6E INMARSAT 5-F1</option>
+					<option id="s0620" value="62">62E INTELSAT 902 (IS-902)</option>
+					<option id="s0600" value="60">60E INTELSAT 904 (IS-904)</option>
+					<option id="s0585" value="58.5">58.5E KAZSAT 3</option>
+					<option id="s0570" value="57">57E METEOSAT-7 | NSS-12</option>
+					<option id="s0560" value="56">56E BONUM 1 | EXPRESS-AT1</option>
+					<option id="s0551" value="55.1">55.1E GSAT 8</option>
+					<option id="s0549" value="54.9">54.9E ASTRA 1F | YAMAL 402</option>
+					<option id="s0530" value="53">53E EXPRESS-AM 22</option>
+					<option id="s0527" value="52.7">52.7E SKYNET 5D</option>
+					<option id="s0525" value="52.5">52.5E YAHSAT 1A</option>
+					<option id="s0511" value="51.1">51.1E SIRIUS 3</option>
+					<option id="s0505" value="50.5">50.5E NSS-5</option>
+					<option id="s0502" value="50.2">50.2E INTELSAT 5 (IS-5)</option>
+					<option id="s0490" value="49">49E YAMAL 202</option>
+					<option id="s0481" value="48.1">48.1E EUTELSAT 48B</option>
+					<option id="s0480" value="48">48E EUTELSAT 48A | EUTELSAT 48C</option>
+					<option id="s0475" value="47.5">47.5E INTELSAT 10 (IS-10) | YAHSAT 1B</option>
+					<option id="s0460" value="46">46E AZERSPACE 1</option>
+					<option id="s0450" value="45">45E INTELSAT 12 (IS-12)</option>
+					<option id="s0440" value="44">44E THURAYA-2</option>
+					<option id="s0425" value="42.5">42.5E NIGCOMSAT 1R</option>
+					<option id="s0420" value="42">42E TURKSAT 2A | TURKSAT 3A | TURKSAT 4A</option>
+					<option id="s0390" value="39">39E HELLAS-SAT 2</option>
+					<option id="s0380" value="38">38E PAKSAT-1R</option>
+					<option id="s0378" value="37.8">37.8E ATHENA-FIDUS</option>
+					<option id="s0360" value="36">36E EUTELSAT 36A | EUTELSAT 36B</option>
+					<option id="s0330" value="33">33E EUTELSAT 70A | INTELSAT 702 (IS-702)</option>
+					<option id="s0328" value="32.8">32.8E INTELSAT NEW DAWN</option>
+					<option id="s0315" value="31.5">31.5E ASTRA 1G | ASTRA 2B | ASTRA 5B</option>
+					<option id="s0312" value="31.2">31.2E ASTRA 1E</option>
+					<option id="s0310" value="31">31E EUTELSAT 33A | HYLAS 2</option>
+					<option id="s0305" value="30.5">30.5E ARABSAT 5A</option>
+					<option id="s0290" value="29">29E XTAR-EUR</option>
+					<option id="s0285" value="28.5">28.5E EUTELSAT 28A</option>
+					<option id="s0284" value="28.4">28.4E ASTRA 2E</option>
+					<option id="s0282" value="28.2">28.2E ASTRA 2A | ASTRA 2C | ASTRA 2D | ASTRA 2F</option>
+					<option id="s0260" value="26">26E ARABSAT 5B (BADR 5) | BADR-4 | BADR-6</option>
+					<option id="s0256" value="25.6">25.6E EUTELSAT 25B</option>
+					<option id="s0250" value="25">25E INMARSAT 3-F5 | INMARSAT 4-F2</option>
+					<option id="s0248" value="24.8">24.8E ALPHASAT</option>
+					<option id="s0244" value="24.4">24.4E SKYNET 5B</option>
+					<option id="s0235" value="23.5">23.5E ASTRA 3B</option>
+					<option id="s0215" value="21.5">21.5E EUTELSAT 21B</option>
+					<option id="s0210" value="21">21E AFRISTAR</option>
+					<option id="s0200" value="20">20E ARABSAT-5C</option>
+					<option id="s0196" value="19.6">19.6E ASTRA 1H</option>
+					<option id="s0192" value="19.2">19.2E ASTRA 1KR | ASTRA 1L | ASTRA 1M | ASTRA 1N</option>
+					<option id="s0170" value="17">17E AMOS 5</option>
+					<option id="s0168" value="16.8">16.8E TIANLIAN 1-03</option>
+					<option id="s0160" value="16">16E EUTELSAT 16A</option>
+					<option id="s0158" value="15.8">15.8E EUTELSAT 16B</option>
+					<option id="s0145" value="14.5">14.5E EUTELSAT 16C</option>
+					<option id="s0132" value="13.2">13.2E COMSATBW-2</option>
+					<option id="s0130" value="13">13E EUTELSAT 3C | EUTELSAT HOT BIRD 13B-13C</option>
+					<option id="s0118" value="11.8">11.8E RADUGA-1 8</option>
+					<option id="s0100" value="10">10E EUTELSAT 10A</option>
+					<option id="s0093" value="9.3">9.3E METEOSAT-9 (MSG-2)</option>
+					<option id="s0090" value="9">9E EUTELSAT 9A | EUTELSAT KA-SAT 9A</option>
+					<option id="s0070" value="7">7E EUTELSAT 3D | EUTELSAT 7A</option>
+					<option id="s0060" value="6">6E SKYNET 5A</option>
+					<option id="s0052" value="5.2">5.2E SES-5</option>
+					<option id="s0048" value="4.8">4.8E SIRIUS 4</option>
+					<option id="s0035" value="3.5">3.5E METEOSAT-8 (MSG-1)</option>
+					<option id="s0033" value="3.3">3.3E EUTELSAT 3A</option>
+					<option id="s0031" value="3.1">3.1E EUTELSAT 3B</option>
+					<option id="s0029" value="2.9">2.9E RASCOM-QAF 1R</option>
+					<option id="s0020" value="2">2E ASTRA 1C</option>
+					<option id="s0000" value="0" selected>0E Satellite 3A</option>
+					<option id="s3592" value="-0.8">0.8W INTELSAT 10-02 | THOR 5 | THOR 6</option>
+					<option id="s3575" value="-2.5">2.5W MSG-3 (METEOSAT-10)</option>
+					<option id="s3570" value="-3">3W ABS 5 (AGILA 2)</option>
+					<option id="s3560" value="-4">4W AMOS 2 | AMOS 3</option>
+					<option id="s3557" value="-4.3">4.3W THOR III</option>
+					<option id="s3550" value="-5">5W EUTELSAT 5 West A</option>
+					<option id="s3548" value="-5.2">5.2W SYRACUSE 3B</option>
+					<option id="s3530" value="-7">7W NILESAT 102 | NILESAT 201</option>
+					<option id="s3527" value="-7.3">7.3W EUTELSAT 7 West A</option>
+					<option id="s3522" value="-7.8">7.8W EUTELSAT HOT BIRD 13A</option>
+					<option id="s3520" value="-8">8W EUTELSAT 8 West A</option>
+					<option id="s3490" value="-11">11W EXPRESS-AM 44</option>
+					<option id="s3475" value="-12.5">12.5W EUTELSAT 12 West A</option>
+					<option id="s3460" value="-14">14W EXPRESS 4A</option>
+					<option id="s3450" value="-15">15W TELSTAR 12 (ORION 2)</option>
+					<option id="s3445" value="-15.5">15.5W INMARSAT 3-F2</option>
+					<option id="s3440" value="-16">16W LUCH 5B</option>
+					<option id="s3422" value="-17.8">17.8W SKYNET 5C</option>
+					<option id="s3420" value="-18">18W INTELSAT 901 (IS-901)</option>
+					<option id="s3400" value="-20">20W NSS-7</option>
+					<option id="s3380" value="-22">22W SES-4</option>
+					<option id="s3355" value="-24.5">24.5W INTELSAT 905 (IS-905)</option>
+					<option id="s3330" value="-27">27W XM-2 (ROCK)</option>
+					<option id="s3325" value="-27.5">27.5W INTELSAT 907 (IS-907)</option>
+					<option id="s3305" value="-29.5">29.5W INTELSAT 701 (IS-701)</option>
+					<option id="s3300" value="-30">30W HISPASAT 1D | HISPASAT 1E | SPAINSAT</option>
+					<option id="s3285" value="-31.5">31.5W INTELSAT 25 (IS-25)</option>
+					<option id="s3265" value="-33.5">33.5W HYLAS 1</option>
+					<option id="s3255" value="-34.5">34.5W INTELSAT 903 (IS-903)</option>
+					<option id="s3225" value="-37.5">37.5W NSS-10 (AMC-12) | TELSTAR 11N</option>
+					<option id="s3195" value="-40.5">40.5W SES-6</option>
+					<option id="s3190" value="-41">41W TDRS 9</option>
+					<option id="s3170" value="-43">43W INTELSAT 11 (IS-11)</option>
+					<option id="s3169" value="-43.1">43.1W INTELSAT 9 (IS-9)</option>
+					<option id="s3150" value="-45">45W INTELSAT 14 (IS-14)</option>
+					<option id="s3148" value="-45.2">45.2W ECHOSTAR 15</option>
+					<option id="s3129" value="-47.1">47.1W NSS-703</option>
+					<option id="s3125" value="-47.5">47.5W NSS-806</option>
+					<option id="s3100" value="-50">50W INTELSAT 1R (IS-1R)</option>
+					<option id="s3090" value="-51">51W AMAZONAS 4A</option>
+					<option id="s3070" value="-53">53W INTELSAT 23 (IS-23)</option>
+					<option id="s3060" value="-54">54W INMARSAT 3-F4</option>
+					<option id="s3046" value="-55.4">55.4W AMAZONAS</option>
+					<option id="s3045" value="-55.5">55.5W GALAXY 11 (G-11) | INTELSAT 805</option>
+					<option id="s3020" value="-58">58W INTELSAT 21 (IS-21)</option>
+					<option id="s2990" value="-61">61W AMAZONAS 2 | AMAZONAS 3</option>
+					<option id="s2985" value="-61.5">61.5W ECHOSTAR 12 | ECHOSTAR 16-3</option>
+					<option id="s2970" value="-63">63W TELSTAR 14R</option>
+					<option id="s2968" value="-63.2">63.2W BRASILSAT B2</option>
+					<option id="s2950" value="-65">65W STAR ONE C1</option>
+					<option id="s2930" value="-67">67W AMC-3 (GE-3) | AMC-4 (GE-4)</option>
+					<option id="s2900" value="-70">70W STAR ONE C2</option>
+					<option id="s2880" value="-72">72W AMC-6 (GE-6)</option>
+					<option id="s2873" value="-72.7">72.7W NIMIQ 5</option>
+					<option id="s2850" value="-75">75W GOES 13 | STAR ONE C3</option>
+					<option id="s2840" value="-76">76W INTELSAT 16 (IS-16)</option>
+					<option id="s2830" value="-77">77W ECHOSTAR 1 | ECHOSTAR 8 | QUETZSAT 1</option>
+					<option id="s2820" value="-78">78W VENESAT-1</option>
+					<option id="s2792" value="-80.8">80.8W AMC-2 (GE-2)</option>
+					<option id="s2780" value="-82">82W NIMIQ 4</option>
+					<option id="s2770" value="-83">83W AMC-9 (GE-12)</option>
+					<option id="s2762" value="-83.8">83.8W HISPASAT 1C</option>
+					<option id="s2760" value="-84">84W BRASILSAT B4</option>
+					<option id="s2750" value="-85">85W AMC-16</option>
+					<option id="s2749" value="-85.1">85.1W XM-3 (RHYTHM) | XM-5</option>
+					<option id="s2730" value="-87">87W SES-2</option>
+					<option id="s2727" value="-87.3">87.3W TKSAT-1 (TUPAC KATARI)</option>
+					<option id="s2710" value="-89">89W GALAXY 28 (G-28)</option>
+					<option id="s2690" value="-91">91W GALAXY 17 (G-17)</option>
+					<option id="s2689" value="-91.1">91.1W NIMIQ 6</option>
+					<option id="s2680" value="-92">92W BRASILSAT B3</option>
+					<option id="s2669" value="-93.1">93.1W GALAXY 25 (G-25)</option>
+					<option id="s2650" value="-95">95W GALAXY 3C (G-3C) | SPACEWAY 3</option>
+					<option id="s2640" value="-96">96W SIRIUS FM-5</option>
+					<option id="s2638" value="-96.2">96.2W ECHOSTAR 6</option>
+					<option id="s2630" value="-97">97W GALAXY 19 (G-19)</option>
+					<option id="s2624" value="-97.6">97.6W INMARSAT 4-F3</option>
+					<option id="s2610" value="-99">99W GALAXY 16 (G-16)</option>
+					<option id="s2608" value="-99.2">99.2W DIRECTV 11 | SPACEWAY 2</option>
+					<option id="s2592" value="-100.8">100.8W DIRECTV 8</option>
+					<option id="s2590" value="-101">101W DIRECTV 4S | DIRECTV 9S | SES 1</option>
+					<option id="s2587" value="-101.3">101.3W SKYTERRA 1</option>
+					<option id="s2572" value="-102.8">102.8W DIRECTV 10 | DIRECTV 12 | SPACEWAY 1</option>
+					<option id="s2570" value="-103">103W AMC-1 (GE-1) | SES-3</option>
+					<option id="s2550" value="-105">105W AMC-15 | AMC-18 | GOES 14</option>
+					<option id="s2529" value="-107.1">107.1W ECHOSTAR 17</option>
+					<option id="s2527" value="-107.3">107.3W ANIK F1 | ANIK F1R | ANIK G1</option>
+					<option id="s2508" value="-109.2">109.2W NIMIQ 2</option>
+					<option id="s2500" value="-110">110W DIRECTV 5 | ECHOSTAR 10 | ECHOSTAR 11</option>
+					<option id="s2490" value="-111">111W TERRESTAR-1</option>
+					<option id="s2489" value="-111.1">111.1W ANIK F2 | WILDBLUE-1</option>
+					<option id="s2470" value="-113">113W SATMEX 6</option>
+					<option id="s2452" value="-114.8">114.8W MEXSAT 3</option>
+					<option id="s2451" value="-114.9">114.9W SATMEX 5</option>
+					<option id="s2450" value="-115">115W XM-4 (BLUES)</option>
+					<option id="s2449" value="-115.1">115.1W VIASAT-1</option>
+					<option id="s2448" value="-115.2">115.2W XM-1 (ROLL)</option>
+					<option id="s2432" value="-116.8">116.8W SATMEX 8</option>
+					<option id="s2413" value="-118.7">118.7W ANIK F3</option>
+					<option id="s2410" value="-119">119W DIRECTV 7S | ECHOSTAR 14 | ECHOSTAR 7</option>
+					<option id="s2395" value="-120.5">120.5W SIRIUS FM-6</option>
+					<option id="s2390" value="-121">121W GALAXY 23 (G-23)</option>
+					<option id="s2370" value="-123">123W GALAXY 18 (G-18)</option>
+					<option id="s2350" value="-125">125W AMC-21 | GALAXY 14 (G-14)</option>
+					<option id="s2330" value="-127">127W GALAXY 13 (HORIZONS-1)</option>
+					<option id="s2310" value="-129">129W CIEL-2 | GALAXY 12 (G-12)</option>
+					<option id="s2290" value="-131">131W AMC-11 (GE-11)</option>
+					<option id="s2270" value="-133">133W GALAXY 15 (G-15)</option>
+					<option id="s2250" value="-135">135W AMC-10 (GE-10)</option>
+					<option id="s2246" value="-135.4">135.4W GOES 15</option>
+					<option id="s2230" value="-137">137W AMC-7 (GE-7)</option>
+					<option id="s2210" value="-139">139W AMC-8 (GE-8)</option>
+					<option id="s1860" value="-174">174W TDRS 10</option>
+					<option id="s1830" value="-177">177W ASTRA 3A | NSS-9</option>
+					<option id="A5">** Motorized **</option>
+					<option id="s5000" value="0">True South / True North</option>
+					<option id="s5001" value="0">Geosat Pro GS120</option>
+					<option id="s5002" value="0">Moteck SG2100</option>
+					<option id="s5003" value="0">PanSat PM900S</option>
+					<option id="s5004" value="0">Powertech DG240</option>
+					<option id="s5005" value="0">Satcontrol SM3D12 / SM3D22</option>
+					<option id="s5006" value="0">Stab HH90</option>
+					<option id="s5007" value="0">Stab HH100</option>
+					<option id="s5008" value="0">Stab HH120</option>
+					<option id="s5009" value="0">Superjack DG120</option>
+					<option id="A4">** Multi-LNB**</option>
+					<option id="s4024" value="23.5">28.2E, 23.5E(c), 19.2E</option>
+					<option id="s4018" value="19.2">28.2E, 19.2E(c), 5W</option>
+					<option id="s4019" value="13">16E, 13E(c), 1W</option>
+					<option id="s4017" value="5">13E, 5E(c), 4W</option>
+					<option id="s4013" value="19.2">28.2E, 19.2E(c), 13E</option>
+					<option id="s4012" value="13">19.2E & 13E(c)</option>
+					<option id="s4032" value="-95.0">DirecTV WorldDirect (95W, 101W)</option>
+					<option id="s4028" value="-101.0">DirecTV SL3 (99W, 101W, 103W)</option>
+					<option id="s4008" value="-110.0">DirecTV 3 LNB (101W, 110W, 119W)</option>
+					<option id="s4002" value="-101.0">DirecTV 5 LNB (99, 101, 103, 110, 119W)</option>
+					<option id="s4003" value="-110.0">Dish 105 (105W, 110W, 119W)</option>
+					<option id="s4006" value="-119.0">Dish 121 (110W, 119W, 121W)</option>
+					<option id="s4005" value="-114.5">Dish 500+ (110W, 118.7W, 119W)</option>
+					<option id="s4007" value="-119.0">Dish 1000+ (110W, 118.7W, 119W, 129W)</option>
+					<option id="s4025" value="-119.0">Dish 1000.2 (110W, 119W, 129W)</option>
+					<option id="s4027" value="-72.7">Dish 1000.4 (61.5W, 72.7W, 77W)</option>
+					<option id="s4001" value="-86.5">82W & 91W</option>
+					<option id="s4020" value="-91">82W, 91W(c), 101W</option>
+					<option id="s4011" value="-101.0">82W, 91W, 110W, 119W</option>
+					<option id="s4026" value="-101.0">82W, 91W, 97W, 110W, 119W</option>
+					<option id="s4029" value="-110.0">82W, 91W, 110W(c), 119W, 129W</option>
+					<option id="s4030" value="-110.0">91W, 110W(c), 119W, 129W</option>
+					<option id="s4022" value="-101.0">91W, 101W(c), 110W</option>
+					<option id="s4010" value="-110.0">91W, 110W(c), 119W</option>
+					<option id="s4014" value="-110.0">91W, 101W, 110W(c), 119W</option>
+					<option id="s4023" value="-110.0">101W, 110W(c), 119W</option>
+					<option id="s4004" value="-109.2">Starchoice 107W & 111W</option>
+					<option id="s4015" value="-114.5">110W & 119W</option>
+					<option id="s4021" value="-119">110W, 119W, 129W</option>
+					<option id="s4016" value="-124">119W & 129W</option>
+					<option id="s4031" value="-138.5">129W & 148W</option>
+					<option id="s4009" value="156">Optus D1/C1/D2 (160E, 156E, 152E)</option>
+				</select>
+				    <div class="menu__command">
+		        	<button type="button" id="js-calcAziElev" class="button button__calcAziElev">Look</button>
+	            <button type="button" id="js-view-details" class="button button__view-details">Details</button>
+              <button type="button" id="js-view-info__button" class="button button__view-info">Info</button>
+            </div>
+	      </div>
+	    </div>
+    </header>
+
+    <div id="js-gmap" class="container-map">
+        <div id="streetview" class="streetview">
+            <div id="pano"></div>
+            <div id="js-mirino" class="fade">
+
+
+            	<div class="mirino"></div>
+            </div>
+        </div>
+
+        <div class="container-gmap">
+	        <button id="js-gmap-resize" class="btn-gmap-resize">
+	        	<svg class="icon--medium" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="78.876px" id="Capa_1" version="1.1" viewBox="0 0 79.124 78.876" width="79.124px" xml:space="preserve" enable-background="new 0 0 79.124 78.876">
+				  <path d="M47.624 0l12.021 9.73L44.5 24.376l10 10 14.661-15.161L79.124 31.5V0H47.624zM24.5 44.376L9.847 59.529 0 47.376v31.5h31.5l-12.153-9.847L34.5 54.376 24.5 44.376z"/>
+				  <g/>
+				  <g/>
+				  <g/>
+				  <g/>
+				  <g/>
+				  <g/>
+				  <g/>
+				  <g/>
+				  <g/>
+				  <g/>
+				  <g/>
+				  <g/>
+				  <g/>
+				  <g/>
+				  <g/>
+				</svg>
+			</button>
+        	<div id="map" class="gmap"></div>
+        </div>
+    </div>
+
+    <div id="debug" class="debug">
+	    <div class="fade">
+	    	<div id="js-debug__close" class="debug__close">
+	    		<svg class="icon--small debug__icon-close" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="348.333px" height="348.334px" viewBox="0 0 348.333 348.334" xml:space="preserve" enable-background="new 0 0 348.333 348.334">
+				  <g>
+				    <path d="M336.559 68.611L231.016 174.165l105.543 105.549c15.699 15.705 15.699 41.145 0 56.85 -7.844 7.844-18.128 11.769-28.407 11.769 -10.296 0-20.581-3.919-28.419-11.769L174.167 231.003 68.609 336.563c-7.843 7.844-18.128 11.769-28.416 11.769 -10.285 0-20.563-3.919-28.413-11.769 -15.699-15.698-15.699-41.139 0-56.85l105.54-105.549L11.774 68.611c-15.699-15.699-15.699-41.145 0-56.844 15.696-15.687 41.127-15.687 56.829 0l105.563 105.554L279.721 11.767c15.705-15.687 41.139-15.687 56.832 0C352.258 27.466 352.258 52.912 336.559 68.611z"/>
+				  </g>
+				</svg>
+	    	</div>
+
+		    <div class="debug__body">
+		    	<div class="debug__item">
+		    		<div class="debug__label">nome satellite:</div>
+		        	<div id="namesat"></div>
+		    		<div class="debug__label">longitudine satellite:</div>
+		        	<div id="longsat"></div>
+		        </div>
+		        <div class="debug__item">
+			        <div class="debug__label">latitudine gmap:</div>
+			        <div id="js-lat"></div>
+			        <div class="debug__label">longitudine gmap:</div>
+			        <div id="js-long"></div>
+		        </div>
+		        <div class="debug__item">
+		        	<div class="debug__label">azimuth:</div>
+		        	<div id="azimuth"></div>
+		        	<div class="debug__label">elevation:</div>
+		        	<div id="elevation"></div>
+		        </div>
+		        <div class="debug__item">
+			        <label class="debug__label" for="gradi-elevation">imposta l'incremento per l'elevazione:</label>
+			        <input id="gradi-elevation" class="debug__gradi-elevation" type="number" value="0">
+		        </div>
+		        <div class="debug__item">
+		        	<div class="debug__label">valore elevation incrementato:</div>
+		        	<div id="elevation_google"></div>
+		        	<div class="debug__label">valore azimuth standard:</div>
+		        	<div id="azimuth_google"></div>
+		        </div>
+		    </div>
+		</div>
+    </div>
+
+    <div id="js-container-view-details" class="container__view-details">
+    	<div class="view-details">
+        	<div class="view-details__label">latitudine</div>
+        	<div id="js-marker-satellite-lat"></div>
+            <div class="view-details__label">longitudine</div>
+            <div id="js-marker-satellite-lng"></div>
+            <div class="view-details__label">azimuth</div>
+        	<div id="js-view-details-azimuth"></div>
+            <div class="view-details__label">elevation</div>
+            <div id="js-view-details-elevation"></div>
+
+        </div>
+    </div>
+
+    <div id="js-notification" class="notification">
+    	<div class="btn-close">
+    		<svg class="icon--small debug__icon-close" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="348.333px" height="348.334px" viewBox="0 0 348.333 348.334" xml:space="preserve" enable-background="new 0 0 348.333 348.334">
+			  <g>
+			    <path d="M336.559 68.611L231.016 174.165l105.543 105.549c15.699 15.705 15.699 41.145 0 56.85 -7.844 7.844-18.128 11.769-28.407 11.769 -10.296 0-20.581-3.919-28.419-11.769L174.167 231.003 68.609 336.563c-7.843 7.844-18.128 11.769-28.416 11.769 -10.285 0-20.563-3.919-28.413-11.769 -15.699-15.698-15.699-41.139 0-56.85l105.54-105.549L11.774 68.611c-15.699-15.699-15.699-41.145 0-56.844 15.696-15.687 41.127-15.687 56.829 0l105.563 105.554L279.721 11.767c15.705-15.687 41.139-15.687 56.832 0C352.258 27.466 352.258 52.912 336.559 68.611z"/>
+			  </g>
+			</svg>
+    	</div>
+    	<div class="notification-text"></div>
+    </div>
+
+    <!-- <footer class="footer">
+    	Copyright © 2016 by Alessandro Quacquarelli. All rights reserved. | <a href="#" class="credits">Credits</a>
+    </footer> -->
+
+    <div id="js-view-info" class="view-info__notification">Ciao!
+Welcome to this simple but powerful application. Type and search any place that you want.
+You can search by address, name and suggestions.
+Explore all the world for fun or for work.
+ If you are interested in locating any satellite position, select it from the list and press the Look button.
+The red spot helps you find the satellite position and determine whether there are obstacles between you and the satellite.
+For any question don't hesitate to contact me!  <a href="mailto:info@kessydish.com" target="_blank">Mail</a><br>
+<a href="https://www.paypal.me/Quacquarelli" target="_blank">Buy me a coffee</a></div>
+
+
+   	</div><!-- container-app -->
+
+   	/*<script src="js/app-google.js"></script>
+    <script src="js/app-calc.js"></script>
+    <script src="js/app-theme.js"></script>*/
+    <script src="js/app.min.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8jCNbiRqaGAX3-WpoUGNR4NOzZjWlj8A&libraries=places&callback=initAutocomplete" async defer></script>
+
+    <!-- <script type="text/javascript">stLight.options({publisher: "4508603c-08e3-4b45-96bd-e1fca1468d68", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+  	<script>
+  	var options={ "publisher": "4508603c-08e3-4b45-96bd-e1fca1468d68", "position": "right", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": { "items": ["facebook", "twitter", "linkedin", "googleplus", "email", "sharethis"]}};
+  	var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
+  	</script> -->
+
+    </body>
+</html>
